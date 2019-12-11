@@ -1,0 +1,28 @@
+##To copy directories from local machine to VM I used:
+ssh VM #VM is setup to be my virtual machine
+mkdir "FinalProject"
+
+scp -r "\Users\kforce\Desktop\Big Data 210\Final Project\Dat\sub" kforce1@ubuntuserver027.westus2.cloudapp.azure.com:FinalProject
+scp -r "\Users\kforce\Desktop\Big Data 210\Final Project\Dat\num" kforce1@ubuntuserver027.westus2.cloudapp.azure.com:FinalProject
+scp -r "\Users\kforce\Desktop\Big Data 210\Final Project\Dat\tag" kforce1@ubuntuserver027.westus2.cloudapp.azure.com:FinalProject
+scp -r "\Users\kforce\Desktop\Big Data 210\Final Project\Dat\pre" kforce1@ubuntuserver027.westus2.cloudapp.azure.com:FinalProject
+scp "\Users\kforce\Desktop\Big Data 210\Final Project\Data\DOWMembers.csv" kforce1@ubuntuserver027.westus2.cloudapp.azure.com:FinalProject
+
+
+mv FinalProject/'\Users\kforce\Desktop\Big Data 210\Final Project\Data\tag' FinalProject/sub
+mv FinalProject/'\Users\kforce\Desktop\Big Data 210\Final Project\Data\tag' FinalProject/num
+mv FinalProject/'\Users\kforce\Desktop\Big Data 210\Final Project\Data\tag' FinalProject/tag
+mv FinalProject/'\Users\kforce\Desktop\Big Data 210\Final Project\Data\pre' FinalProject/pre
+mv '\Users\kforce\Desktop\Big Data 210\Final Project\Data\DOWMembers.csv' DOWMembers.csv
+
+##To copy from VM to Databricks:
+databricks fs mkdirs dbfs:/autumn_2019/kforce/FinalProject
+databricks fs mkdirs dbfs:/autumn_2019/kforce/FinalProject/sub
+databricks fs mkdirs dbfs:/autumn_2019/kforce/FinalProject/tag
+databricks fs mkdirs dbfs:/autumn_2019/kforce/FinalProject/num
+
+databricks fs cp -r FinalProject/sub dbfs:/autumn_2019/kforce/FinalProject/sub
+databricks fs cp -r FinalProject/tag dbfs:/autumn_2019/kforce/FinalProject/tag
+databricks fs cp -r FinalProject/num dbfs:/autumn_2019/kforce/FinalProject/num
+databricks fs cp -r FinalProject/pre dbfs:/autumn_2019/kforce/FinalProject/pre
+databricks fs cp FinalProject/DowMembers.csv dbfs:/autumn_2019/kforce/FinalProject/DowMembers.csv
